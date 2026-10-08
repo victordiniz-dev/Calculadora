@@ -1,49 +1,49 @@
-
 import { useState } from 'react';
 import './App.css';
 
 export default function App() {
+  const [display, setDisplay] = useState("");
 
-  
-  const [meuEstado, setMeuEstado] = useState("Valor inicial");
+  function handleButton(value) {
+    if (value === "C") {
+      setDisplay("");
+      return;
+    }
 
-  
-  function minhaLógica() {
-    
-    setMeuEstado("Novo valor!");
+    if (value === "<") {
+      setDisplay((current) => current.slice(0, -1));
+      return;
+    }
+
+    setDisplay((current) => current + value);
   }
-
 
   return (
     <main className="container-principal">
       <h1>Calculadora em React</h1>
       <div className="calculadora">
-        <input type="text" disabled id="display" />
+        <input type="text" disabled id="display" value={display} />
         <div className="botoes">
-          <button>C</button>
-          <button>&lt;</button>
-          <button>/</button>
-          <button>*</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>-</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>+</button>
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>0</button>
-          <button>.</button>
-          <button>=</button>
+          <button type="button" onClick={() => handleButton("C")}>C</button>
+          <button type="button" onClick={() => handleButton("<")}>&lt;</button>
+          <button type="button" onClick={() => handleButton("/")}>/</button>
+          <button type="button" onClick={() => handleButton("*")}>*</button>
+          <button type="button" onClick={() => handleButton("7")}>7</button>
+          <button type="button" onClick={() => handleButton("8")}>8</button>
+          <button type="button" onClick={() => handleButton("9")}>9</button>
+          <button type="button" onClick={() => handleButton("-")}>-</button>
+          <button type="button" onClick={() => handleButton("4")}>4</button>
+          <button type="button" onClick={() => handleButton("5")}>5</button>
+          <button type="button" onClick={() => handleButton("6")}>6</button>
+          <button type="button" onClick={() => handleButton("+")}>+</button>
+          <button type="button" onClick={() => handleButton("1")}>1</button>
+          <button type="button" onClick={() => handleButton("2")}>2</button>
+          <button type="button" onClick={() => handleButton("3")}>3</button>
+          <button type="button"className ="btn-0" onClick={() => handleButton("0") }>0</button>
+          <button type="button" onClick={() => handleButton(".")}>.</button>
+          <button type="button"className ="btn-igual" onClick={() => handleButton("=")}>=</button>
         </div>
       </div>
-      
-      
-      
-      
     </main>
   );
 }
