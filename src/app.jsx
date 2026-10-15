@@ -1,21 +1,15 @@
 import { useState } from 'react';
 import './App.css';
+import {
+  Calcular,
+  handleButton as handleCalculatorButton,
+} from './handleButton';
 
 export default function App() {
   const [display, setDisplay] = useState("");
 
   function handleButton(value) {
-    if (value === "C") {
-      setDisplay("");
-      return;
-    }
-
-    if (value === "<") {
-      setDisplay((current) => current.slice(0, -1));
-      return;
-    }
-
-    setDisplay((current) => current + value);
+    handleCalculatorButton(value, setDisplay);
   }
 
   return (
@@ -41,7 +35,7 @@ export default function App() {
           <button type="button" onClick={() => handleButton("3")}>3</button>
           <button type="button"className ="btn-0" onClick={() => handleButton("0") }>0</button>
           <button type="button" onClick={() => handleButton(".")}>.</button>
-          <button type="button"className ="btn-igual" onClick={() => handleButton("=")}>=</button>
+          <button type="button"className ="btn-igual" onClick={() => Calcular(display, setDisplay)}>=</button>
         </div>
       </div>
     </main>
